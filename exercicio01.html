@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercicio 01</title>
+  </head>
+  <body>
+    <script>
+      const companies = [
+        { name: "Company One", category: "Finance", start: 1981, end: 2004 },
+        { name: "Company Two", category: "Retail", start: 1992, end: 2008 },
+        { name: "Company Three", category: "Auto", start: 1999, end: 2007 },
+        { name: "Company Four", category: "Retail", start: 1989, end: 2010 },
+        {
+          name: "Company Five",
+          category: "Technology",
+          start: 2009,
+          end: 2014,
+        },
+        { name: "Company Six", category: "Finance", start: 1987, end: 2010 },
+        { name: "Company Seven", category: "Auto", start: 1986, end: 1996 },
+        {
+          name: "Company Eight",
+          category: "Technology",
+          start: 2011,
+          end: 2016,
+        },
+        { name: "Company Nine", category: "Retail", start: 1981, end: 1989 },
+      ];
+
+      const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32];
+      const person = {
+        name: "Costas",
+        address: {
+          street: "Lalaland 12",
+        },
+      };
+      //// NOME COM FOREACH ///////
+
+      companies.forEach((company) => {
+        console.log(`Name: ${company.name},`);
+      });
+
+      ////// ANO ACIMA DE 1987 ///
+
+      for (let i = 0; i < companies.length; i++) {
+        if (companies[i].start > 1987) {
+          console.log(companies[i].name);
+        }
+      }
+      //////// SOMA AGES
+      const somaAges = ages.reduce((a, b) => a + b, 0);
+
+      console.log("Soma de todos os valores do array ages:", somaAges);
+
+      //////////// STREET DO AGE
+
+      const {
+        address: { street },
+      } = person;
+
+      console.log(street);
+
+      ////////// Propriedade street
+
+      const [firstCompany] = companies;
+
+      const { name, category } = firstCompany;
+
+      const newObject = { name, category };
+
+      console.log(newObject);
+
+      ////////////////// função filtro
+
+      function filterByYear(companies, startYear, endYear) {
+        return companies.filter(
+          (company) => company.start > startYear && company.start < endYear
+        );
+      }
+
+      const filterCompanies = filterByYear(companies, 1996, 2004);
+      console.log(filterCompanies);
+    </script>
+  </body>
+</html>

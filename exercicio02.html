@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function fetchCat() {
+        return new Promise((resolve, reject) => {
+          fetch("https://cat-fact.herokuapp.com/facts/")
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(`Erro na conexão. Código: ${response.status}`);
+              }
+              return response.json();
+            })
+            .then((data) => {
+              resolve(data);
+            })
+            .catch((error) => {
+              reject(error);
+            });
+        });
+      }
+
+      // Mostra Propiedades do 'text'
+      function CatFacts() {
+        fetchCat()
+          .then((data) => {
+            data.forEach((fact) => {
+              console.log(fact.text);
+            });
+          })
+          .catch((error) => {
+            console.error(`Erro ao obter fatos de gatos: ${error}`);
+          });
+      }
+
+      // Executa Função
+      CatFacts();
+    </script>
+  </body>
+</html>
